@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 public class IndexController {
+
     @GetMapping("/")
     public String index(){
         return "index";
@@ -26,15 +27,15 @@ public class IndexController {
 
     @GetMapping("/authentication")
     public String authentication(Authentication authentication){
-
         if (authentication instanceof AnonymousAuthenticationToken) {
             return "anonymous";
         } else {
-            return "null";
+            return "not anonymous";
         }
     }
     @GetMapping("/anonymousContext")
     public String anonymousContext(@CurrentSecurityContext SecurityContext context){
         return context.getAuthentication().getName();
     }
+
 }
